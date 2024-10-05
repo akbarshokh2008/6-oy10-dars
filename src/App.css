@@ -1,0 +1,13 @@
+.register,
+.login {
+  background-image: url("https://img.goodfon.com/original/1920x1200/8/b6/gora-yaponiya-fudziyama.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100vh;
+  background-position: center;
+}
+form input {
+  background: inherit;
+  color: white;
+  border-bottom: 1px solid white;
+}
