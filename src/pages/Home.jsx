@@ -7,6 +7,7 @@ function Home() {
   const colorRef = useRef();
   const formRef = useRef();
   const [boards, setBoards] = useState([]);
+
   function handleCreate(e) {
     e.preventDefault();
     const board = {
@@ -22,11 +23,16 @@ function Home() {
       })
       .then((data) => {
         if (data.data.message === "Board muvaffaqiyatli yaratildi") {
-          alert("Malumot muvoffaqiyatli saqlandi");
+          alert("Ma'lumot muvaffaqiyatli saqlandi");
+          setBoards((prevBoards) => [...prevBoards, board]);
           formRef.current.reset();
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
+
   useEffect(() => {
     http
       .get("/boards/my-boards")
@@ -34,7 +40,8 @@ function Home() {
       .catch((err) => {
         console.log(err);
       });
-  }, [boards]);
+  }, []);
+
   return (
     <div className="container mx-auto ">
       <div className="forma w-1/3 bg-sky-600 mx-auto mt-20 border-2 border-solid border-white pt-8 rounded-lg">
@@ -55,7 +62,6 @@ function Home() {
             placeholder="Enter description..."
             required
           />
-
           <select ref={colorRef} className="w-28 p-2 bg-slate-200">
             <option value="green">green</option>
             <option value="red">red</option>
